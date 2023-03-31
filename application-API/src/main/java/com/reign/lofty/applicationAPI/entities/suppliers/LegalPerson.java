@@ -1,5 +1,7 @@
 package com.reign.lofty.applicationAPI.entities.suppliers;
 
+import com.reign.lofty.applicationAPI.entities.DTO.SupplierDTO;
+import com.reign.lofty.applicationAPI.utils.UUIDGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -9,20 +11,32 @@ import jakarta.persistence.Entity;
 public class LegalPerson extends Supplier {
 
     @Column(unique = true)
-    private long CNPJ;
+    private long cnpj;
 
     public LegalPerson() {}
 
-    public LegalPerson(String name, String email, String CEP, long CNPJ) {
-        super(name, email, CEP);
-        this.CNPJ = CNPJ;
+    public LegalPerson(SupplierDTO supplierDTO) {
+        super(supplierDTO.getName(), supplierDTO.getEmail(), supplierDTO.getCep(), supplierDTO.getSupplierType());
+
+        if(supplierDTO.getId() == null) {
+            this.setId(String.valueOf(UUIDGenerator.generateID()));
+        } else {
+            this.setId(supplierDTO.getId());
+        }
+
+        this.cnpj = supplierDTO.getCnpj();
     }
 
-    public long getCNPJ() {
-        return CNPJ;
+    public LegalPerson(String name, String email, String CEP, Integer supplierType, long cnpj) {
+        super(name, email, CEP, supplierType);
+        this.cnpj = cnpj;
     }
-    public void setCNPJ(long CNPJ) {
-        this.CNPJ = CNPJ;
+
+    public long getCnpj() {
+        return cnpj;
+    }
+    public void setCnpj(long cnpj) {
+        this.cnpj = cnpj;
     }
 
     @Override
@@ -31,8 +45,9 @@ public class LegalPerson extends Supplier {
                 "id:" + getId() + ",\n" +
                 "name:" + getName() + ",\n" +
                 "email:" + getEmail() + ",\n" +
-                "CEP:" + getCEP() + "\n" +
-                "CPF:" + CNPJ + "\n" +
+                "CEP:" + getCEP() + ",\n" +
+                "SupplierType:" + getSupplierType() + ",\n" +
+                "CPF:" + cnpj + "\n" +
                 "}";
     }
 }

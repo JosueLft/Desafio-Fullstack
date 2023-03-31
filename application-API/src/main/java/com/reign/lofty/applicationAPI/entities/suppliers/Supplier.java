@@ -1,11 +1,12 @@
 package com.reign.lofty.applicationAPI.entities.suppliers;
 
+import com.reign.lofty.applicationAPI.enums.SupplierType;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Suppliers")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "supplier_type", length = 1, discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "person_type", length = 1, discriminatorType = DiscriminatorType.STRING)
 public abstract class Supplier {
 
     @Id
@@ -13,13 +14,15 @@ public abstract class Supplier {
     private String name;
     private String email;
     private String CEP;
+    private Integer supplierType;
 
     public Supplier() {}
 
-    public Supplier(String name, String email, String CEP) {
+    public Supplier(String name, String email, String CEP, Integer supplierType) {
         this.name = name;
         this.email = email;
         this.CEP = CEP;
+        this.supplierType = supplierType;
     }
 
     public String getId() {
@@ -46,6 +49,14 @@ public abstract class Supplier {
     public void setCEP(String CEP) {
         this.CEP = CEP;
     }
+    public Integer getSupplierType() {
+        return supplierType;
+    }
+    public void setSupplierType(SupplierType supplierType) {
+        if(supplierType != null) {
+            this.supplierType = supplierType.getCode();
+        }
+    }
 
     @Override
     public String toString() {
@@ -54,6 +65,7 @@ public abstract class Supplier {
                 "name:" + name + ",\n" +
                 "email:" + email + ",\n" +
                 "CEP:" + CEP + "\n" +
+                "SupplierType:" + supplierType + "\n" +
                 "}";
     }
 }
