@@ -51,7 +51,7 @@ public class SupplierService {
         System.err.println(supplier.getBirthDate());
         entity.setName(supplier.getName());
         entity.setEmail(supplier.getEmail());
-        entity.setCEP(supplier.getCEP());
+        entity.setCep(supplier.getCep());
         entity.setRg(supplier.getRg());
         entity.setCpf(supplier.getCpf());
         entity.setBirthDate(supplier.getBirthDate());
@@ -60,7 +60,7 @@ public class SupplierService {
     private void updateData(LegalPerson entity, LegalPerson supplier) {
         entity.setName(supplier.getName());
         entity.setEmail(supplier.getEmail());
-        entity.setCEP(supplier.getCEP());
+        entity.setCep(supplier.getCep());
         entity.setCnpj(supplier.getCnpj());
     }
 }

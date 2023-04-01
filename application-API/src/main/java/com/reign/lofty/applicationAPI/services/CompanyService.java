@@ -60,8 +60,8 @@ public class CompanyService {
     }
 
     private void updateData(Company entity, Company company) {
-        entity.setCEP(company.getCEP());
-        entity.setCNPJ(company.getCNPJ());
+        entity.setCep(company.getCep());
+        entity.setCnpj(company.getCnpj());
         entity.setTradingName(company.getTradingName());
     }
 }

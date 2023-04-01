@@ -69,7 +69,7 @@ public class NaturalPerson extends Supplier {
                 "id:" + getId() + ",\n" +
                 "name:" + getName() + ",\n" +
                 "email:" + getEmail() + ",\n" +
-                "CEP:" + getCEP() + "\n" +
+                "CEP:" + getCep() + "\n" +
                 "CPF:" + cpf + ",\n" +
                 "RG:" + rg + ",\n" +
                 "SupplierType:" + getSupplierType() + ",\n" +

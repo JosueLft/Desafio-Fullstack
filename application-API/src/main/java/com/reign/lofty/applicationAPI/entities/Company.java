@@ -14,9 +14,9 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    private String CNPJ;
+    private long cnpj;
     private String tradingName;
-    private String CEP;
+    private String cep;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "company_supplier", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "supplier_id"))
@@ -25,25 +25,25 @@ public class Company {
     public Company() {}
 
     public Company(Company company) {
-        this.CNPJ = company.getCNPJ();
+        this.cnpj = company.getCnpj();
         this.tradingName = company.getTradingName();
-        this.CEP = company.getCEP();
+        this.cep = company.getCep();
     }
 
-    public Company(Long id, String CNPJ, String tradingName, String CEP) {
+    public Company(Long id, long cnpj, String tradingName, String cep) {
         if(id != null) {
             this.setId(id);
         }
 
-        this.CNPJ = CNPJ;
+        this.cnpj = cnpj;
         this.tradingName = tradingName;
-        this.CEP = CEP;
+        this.cep = cep;
     }
 
-    public Company(String CNPJ, String tradingName, String CEP) {
-        this.CNPJ = CNPJ;
+    public Company(long cnpj, String tradingName, String cep) {
+        this.cnpj = cnpj;
         this.tradingName = tradingName;
-        this.CEP = CEP;
+        this.cep = cep;
     }
 
     public Long getId() {
@@ -52,11 +52,11 @@ public class Company {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getCNPJ() {
-        return CNPJ;
+    public long getCnpj() {
+        return cnpj;
     }
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+    public void setCnpj(long cnpj) {
+        this.cnpj = cnpj;
     }
     public String getTradingName() {
         return tradingName;
@@ -64,11 +64,11 @@ public class Company {
     public void setTradingName(String tradingName) {
         this.tradingName = tradingName;
     }
-    public String getCEP() {
-        return CEP;
+    public String getCep() {
+        return cep;
     }
-    public void setCEP(String CEP) {
-        this.CEP = CEP;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
     public List<Supplier> getSuppliers() {
         return suppliers;
@@ -78,9 +78,9 @@ public class Company {
     public String toString() {
         return "{\n" +
                 "id:" + id + ",\n" +
-                "CNPJ:" + CNPJ + ",\n" +
+                "CNPJ:" + cnpj + ",\n" +
                 "tradingName:" + tradingName + ",\n" +
-                "CEP:" + CEP + ",\n" +
+                "CEP:" + cep + ",\n" +
                 "Suppliers:" + suppliers + "\n" +
                 "}";
     }

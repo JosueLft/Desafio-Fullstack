@@ -19,7 +19,7 @@ public abstract class Supplier {
     private Long id;
     private String name;
     private String email;
-    private String CEP;
+    private String cep;
     private Integer supplierType;
 
     @ManyToMany(mappedBy = "suppliers")
@@ -28,10 +28,10 @@ public abstract class Supplier {
 
     public Supplier() {}
 
-    public Supplier(String name, String email, String CEP, Integer supplierType) {
+    public Supplier(String name, String email, String cep, Integer supplierType) {
         this.name = name;
         this.email = email;
-        this.CEP = CEP;
+        this.cep = cep;
         this.supplierType = supplierType;
     }
 
@@ -53,11 +53,11 @@ public abstract class Supplier {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getCEP() {
-        return CEP;
+    public String getCep() {
+        return cep;
     }
-    public void setCEP(String CEP) {
-        this.CEP = CEP;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
     public Integer getSupplierType() {
         return supplierType;
@@ -77,7 +77,7 @@ public abstract class Supplier {
                 "id:" + id + ",\n" +
                 "name:" + name + ",\n" +
                 "email:" + email + ",\n" +
-                "CEP:" + CEP + "\n" +
+                "CEP:" + cep + "\n" +
                 "SupplierType:" + supplierType + ",\n" +
                 "Services:" + services + "\n" +
                 "}";

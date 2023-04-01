@@ -42,7 +42,7 @@ public class LegalPerson extends Supplier {
                 "id:" + getId() + ",\n" +
                 "name:" + getName() + ",\n" +
                 "email:" + getEmail() + ",\n" +
-                "CEP:" + getCEP() + ",\n" +
+                "CEP:" + getCep() + ",\n" +
                 "SupplierType:" + getSupplierType() + ",\n" +
                 "CPF:" + cnpj + "\n" +
                 "}";
