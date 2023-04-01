@@ -1,10 +1,12 @@
 package com.reign.lofty.applicationAPI.services;
 
 import com.reign.lofty.applicationAPI.entities.Company;
+import com.reign.lofty.applicationAPI.entities.suppliers.Supplier;
 import com.reign.lofty.applicationAPI.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,9 @@ public class CompanyService {
 
     @Autowired
     private CompanyRepository repository;
+
+    @Autowired
+    private SupplierService supplierService;
 
     public List<Company> findAll() { return repository.findAll(); }
 
@@ -23,6 +28,25 @@ public class CompanyService {
 
     public Company insert(Company Company) {
         return repository.save(Company);
+    }
+
+    public List<Supplier> insertSuppliers(Company company, List<Long> suppliersIdsList) {
+        List<Supplier> suppliers = new ArrayList<>();
+
+        for (Supplier sup : supplierService.findAll()) {
+            for(Long supId : suppliersIdsList) {
+                if (sup.getId().equals(supId)) {
+                    sup.getServices().add(company);
+                    suppliers.add(sup);
+                }
+            }
+        }
+
+        company.getSuppliers().addAll(suppliers);
+
+        repository.save(company);
+
+        return suppliers;
     }
 
     public void delete(String id) {

@@ -1,33 +1,37 @@
 package com.reign.lofty.applicationAPI.entities;
 
-import com.reign.lofty.applicationAPI.utils.UUIDGenerator;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.reign.lofty.applicationAPI.entities.suppliers.Supplier;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "Companies")
 public class Company {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(unique = true)
     private String CNPJ;
     private String tradingName;
     private String CEP;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "company_supplier", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "supplier_id"))
+    private List<Supplier> suppliers = new ArrayList<>();
+
     public Company() {}
 
     public Company(Company company) {
-        this.id = String.valueOf(UUIDGenerator.generateID());
         this.CNPJ = company.getCNPJ();
         this.tradingName = company.getTradingName();
         this.CEP = company.getCEP();
     }
 
-    public Company(String id, String CNPJ, String tradingName, String CEP) {
-        if(id.equalsIgnoreCase("")) {
-            this.setId(String.valueOf(UUIDGenerator.generateID()));
-        } else {
+    public Company(Long id, String CNPJ, String tradingName, String CEP) {
+        if(id != null) {
             this.setId(id);
         }
 
@@ -42,10 +46,10 @@ public class Company {
         this.CEP = CEP;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getCNPJ() {
@@ -66,6 +70,9 @@ public class Company {
     public void setCEP(String CEP) {
         this.CEP = CEP;
     }
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
 
     @Override
     public String toString() {
@@ -73,7 +80,8 @@ public class Company {
                 "id:" + id + ",\n" +
                 "CNPJ:" + CNPJ + ",\n" +
                 "tradingName:" + tradingName + ",\n" +
-                "CEP:" + CEP + "\n" +
+                "CEP:" + CEP + ",\n" +
+                "Suppliers:" + suppliers + "\n" +
                 "}";
     }
 }

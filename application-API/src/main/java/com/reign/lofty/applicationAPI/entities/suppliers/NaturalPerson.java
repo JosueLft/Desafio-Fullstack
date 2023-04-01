@@ -1,7 +1,6 @@
 package com.reign.lofty.applicationAPI.entities.suppliers;
 
 import com.reign.lofty.applicationAPI.entities.DTO.SupplierDTO;
-import com.reign.lofty.applicationAPI.utils.UUIDGenerator;
 import jakarta.persistence.*;
 
 import java.text.DateFormat;
@@ -23,9 +22,7 @@ public class NaturalPerson extends Supplier {
     public NaturalPerson(SupplierDTO supplierDTO) {
         super(supplierDTO.getName(), supplierDTO.getEmail(), supplierDTO.getCep(), supplierDTO.getSupplierType());
 
-        if(supplierDTO.getId() == null) {
-            this.setId(String.valueOf(UUIDGenerator.generateID()));
-        } else {
+        if(supplierDTO.getId() != null) {
             this.setId(supplierDTO.getId());
         }
 

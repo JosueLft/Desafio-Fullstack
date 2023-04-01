@@ -1,6 +1,7 @@
 package com.reign.lofty.applicationAPI.resources;
 
 import com.reign.lofty.applicationAPI.entities.Company;
+import com.reign.lofty.applicationAPI.entities.suppliers.Supplier;
 import com.reign.lofty.applicationAPI.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,18 @@ public class CompanyResource {
             return ResponseEntity.ok(comp);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("INSERT: " + e.getMessage());
+        }
+    }
+
+    @PostMapping(value = "/{id}/insert-suppliers")
+    public ResponseEntity<?> insertSuppliers(@PathVariable String id, @RequestBody List<Long> supplierIds) {
+        try {
+            Company comp = service.findById(id);
+
+            comp.getSuppliers().addAll(service.insertSuppliers(comp, supplierIds));
+            return ResponseEntity.ok(comp);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("INSERT SUPPLIERS: " + e.getMessage());
         }
     }
 

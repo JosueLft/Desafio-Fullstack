@@ -85,7 +85,7 @@ public class SupplierResource {
                 default:
                     return ResponseEntity.badRequest().body("Invalid user type!");
             }
-            service.update(id, supplier);
+            supplier = service.update(id, supplier);
             return ResponseEntity.ok(supplier);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("INSERT: " + e.getMessage());

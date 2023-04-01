@@ -1,7 +1,12 @@
 package com.reign.lofty.applicationAPI.entities.suppliers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.reign.lofty.applicationAPI.entities.Company;
 import com.reign.lofty.applicationAPI.enums.SupplierType;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Suppliers")
@@ -10,11 +15,16 @@ import jakarta.persistence.*;
 public abstract class Supplier {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String CEP;
     private Integer supplierType;
+
+    @ManyToMany(mappedBy = "suppliers")
+    @JsonIgnore
+    private List<Company> services = new ArrayList<>();
 
     public Supplier() {}
 
@@ -25,10 +35,10 @@ public abstract class Supplier {
         this.supplierType = supplierType;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getName() {
@@ -57,6 +67,9 @@ public abstract class Supplier {
             this.supplierType = supplierType.getCode();
         }
     }
+    public List<Company> getServices() {
+        return services;
+    }
 
     @Override
     public String toString() {
@@ -65,7 +78,8 @@ public abstract class Supplier {
                 "name:" + name + ",\n" +
                 "email:" + email + ",\n" +
                 "CEP:" + CEP + "\n" +
-                "SupplierType:" + supplierType + "\n" +
+                "SupplierType:" + supplierType + ",\n" +
+                "Services:" + services + "\n" +
                 "}";
     }
 }
