@@ -43,8 +43,8 @@
 - Não foi feito o deploy dos arquivos de configuração de ambiente por se tratar de uma boa pratica para a segurança dos dados da aplicação, o que caso seja feito o deploy corre o risco de vazar dando informações sobre endereço de ip, login e senha do banco e aplicação.
 
 ##### Front-End
-- Entrar na pasta `application-front` e rodar o comando `ng install` para instalar as dependências do front-end
-- Rodar o comando `npm serve` para iniciar o servidor do front-end
+- Entrar na pasta `application-front` e rodar o comando `npm install` para instalar as dependências do front-end
+- Rodar o comando `ng serve` para iniciar o servidor do front-end
 - Acessar a aplicação em `http://localhost:4200/` no navegador.
 
 ## Autores
