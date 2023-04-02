@@ -51,12 +51,15 @@ public class NaturalPerson extends Supplier {
         this.rg = rg;
     }
     public String getBirthDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(this.birthDate);
+        if(this.birthDate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(this.birthDate);
+        }
+        return "";
     }
     public void setBirthDate(String birthDate) {
         try {
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             this.birthDate = formatter.parse(birthDate);
         } catch (Exception e) {
             System.err.println("Date Parse: " + e.getMessage());

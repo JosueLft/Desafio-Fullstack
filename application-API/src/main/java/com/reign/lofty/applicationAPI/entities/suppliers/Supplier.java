@@ -22,7 +22,7 @@ public abstract class Supplier {
     private String cep;
     private Integer supplierType;
 
-    @ManyToMany(mappedBy = "suppliers")
+    @ManyToMany(mappedBy = "suppliers", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     private List<Company> services = new ArrayList<>();
 

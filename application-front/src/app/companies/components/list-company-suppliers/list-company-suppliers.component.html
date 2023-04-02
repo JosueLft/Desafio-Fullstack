@@ -1,0 +1,47 @@
+<div class="text-light register-content">
+    <h1>Informações da Empresa</h1>
+
+    <div class="text-light infos-group">
+        <label>Nome Fantasia:</label>
+        <input value="{{ company.tradingName }}" type="text" class="form-control" id="tradingName" name="tradingName" disabled=true><br>
+
+        <label for="cep">CEP:</label>
+        <input value="{{ company.cep }}" type="text" class="form-control" id="cep" name="cep"  disabled=true><br>
+
+        <label for="cnpj">CNPJ:</label>
+        <input value="{{ company.cnpj }}" type="number" class="form-control" id="cnpj" name="cnpj"  disabled=true><br><br>
+
+        <div class="form-group text-center">
+            <div class="list-content">
+                <div class="row">
+                  <div class="col-8">
+                    <h5>Fornecedores</h5>
+                  </div>
+                  <div class="col-4">
+                    <ul class="nav nav-pills nav-fill">
+                      <li class="nav-item">
+                        <a class="btn btn-sm btn-dark new-btn" [routerLink]="'/companies/' + company.id + '/register-supplier'">Novo Fornecedor</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div><br>
+              
+                <table class="text-center table table-sm table-dark table-striped table-hover table-bordered">
+                  <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                  </tr>
+                  <tr *ngFor="let supplier of company.suppliers">
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ getDocument(supplier) }}</td>
+                  </tr>
+                </table>
+              
+                <p *ngIf="company.suppliers.length==0">Nenhum Fornecedor cadastrado.</p>
+            </div>
+            <a class="btn btn-outline-danger" [routerLink]="'/companies'">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span></span> Voltar
+            </a>
+        </div>
+    </div>
+</div>

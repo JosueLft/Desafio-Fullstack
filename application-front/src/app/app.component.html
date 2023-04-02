@@ -1,12 +1,23 @@
 <div class="container-fluid bg-dark">
-  <nav class="navbar navbar-dark bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">{{ title }}</a>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid text-light">
+      <a class="navbar-brand" href="#">{{ title }}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="text-light collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="text-light nav-link active" aria-current="page" [routerLink]="'/companies'">Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-light nav-link" [routerLink]="'/suppliers'">Fornecedores</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
+</div>
+<div class="container-fluid">
   <router-outlet></router-outlet>
 </div>

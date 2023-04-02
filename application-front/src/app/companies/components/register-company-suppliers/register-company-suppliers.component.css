@@ -1,0 +1,45 @@
+.register-content {
+    margin: 50px 10%;
+}
+
+.register-content {
+    margin: 50px 10%;
+}
+
+.infos-group {
+    margin: 50px 25%;
+}
+
+.btn {
+    margin-right: 5px;
+    border: 1px solid;
+}
+
+*, .modal .btn-dark {
+    color: #CC7832;
+}
+
+.badge-color {
+    color: #fff;
+}
+
+.btn-sm {
+    width: 150px;
+    max-width: 150px;
+    margin: 5px;
+}
+
+.functions {
+    width: 165px;
+    max-width: 165px;
+}
+
+.new-btn {
+    width: 90%;
+    height: 50px;
+    padding-top: 15px;
+}
+
+td {
+    vertical-align: middle;
+}

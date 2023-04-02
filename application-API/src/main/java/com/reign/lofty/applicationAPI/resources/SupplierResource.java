@@ -6,9 +6,11 @@ import com.reign.lofty.applicationAPI.entities.suppliers.NaturalPerson;
 import com.reign.lofty.applicationAPI.entities.suppliers.Supplier;
 import com.reign.lofty.applicationAPI.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -22,6 +24,7 @@ public class SupplierResource {
     public ResponseEntity<List<?>> findAll() {
         try {
             List<Supplier> supplierList = service.findAll();
+            System.err.println(supplierList);
 
             return ResponseEntity.ok().body(supplierList);
         } catch (Exception e) {
@@ -66,7 +69,9 @@ public class SupplierResource {
         try {
             service.delete(id);
             return ResponseEntity.ok().body(id);
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.badRequest().body("ERROR101: Necessary to remove the relationship between supplier and company to carry out the deletion.\n" + e.getMessage());
+        } catch(Exception e) {
             return ResponseEntity.badRequest().body("DELETE: " + e.getMessage());
         }
     }

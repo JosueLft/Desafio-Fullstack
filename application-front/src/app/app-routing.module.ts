@@ -1,8 +1,17 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-export const routes: Routes = [
+import { SupplierRoutes } from "./suppliers";
+import { CompanyRoutes } from "./companies";
 
+export const routes: Routes = [
+    {
+        path: "",
+        redirectTo: "/companies/list",
+        pathMatch: "full"
+    },
+    ...CompanyRoutes,
+    ...SupplierRoutes
 ];
 
 @NgModule({

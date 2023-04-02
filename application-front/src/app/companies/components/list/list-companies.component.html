@@ -1,0 +1,35 @@
+<div class="list-content">
+    <div class="row">
+      <div class="col-8">
+        <h1>Empresas</h1>
+      </div>
+      <div class="col-4">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a class="btn btn-sm btn-dark new-btn" [routerLink]="'/companies/register'">Nova Empresa</a>
+          </li>
+        </ul>
+      </div>
+    </div><br>
+  
+    <table class="text-center table table-sm table-dark table-striped table-hover table-bordered">
+      <tr>
+        <th>Nome Fantasia</th>
+        <th>CNPJ</th>
+        <th>CEP</th>
+        <th class="text-center">Opções</th>
+      </tr>
+      <tr *ngFor="let company of companies">
+        <td>{{ company.tradingName }}</td>
+        <td>{{ company.cnpj }}</td>
+        <td>{{ company.cep }}</td>
+  
+        <td class="functions">
+          <input type="submit" class="btn btn-sm btn-dark" value="Remover" (click)="delete(company)">
+          <input type="submit" class="btn btn-sm btn-dark" value="Fornecedores" [routerLink]="['/companies/' + company.id + '/suppliers']">
+        </td>
+      </tr>
+    </table>
+  
+    <p *ngIf="companies.length==0">Nenhuma Empresa cadastrada.</p>
+  </div>

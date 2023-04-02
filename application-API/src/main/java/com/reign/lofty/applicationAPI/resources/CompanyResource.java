@@ -1,7 +1,6 @@
 package com.reign.lofty.applicationAPI.resources;
 
 import com.reign.lofty.applicationAPI.entities.Company;
-import com.reign.lofty.applicationAPI.entities.suppliers.Supplier;
 import com.reign.lofty.applicationAPI.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -60,16 +59,6 @@ public class CompanyResource {
         }
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        try {
-            service.delete(id);
-            return ResponseEntity.ok().body(id);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("DELETE: " + e.getMessage());
-        }
-    }
-
     @PostMapping(value = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody Company company) {
         try {
@@ -77,6 +66,16 @@ public class CompanyResource {
             return ResponseEntity.ok(company);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("INSERT: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id) {
+        try {
+            service.delete(id);
+            return ResponseEntity.ok().body(id);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("DELETE: " + e.getMessage());
         }
     }
 }

@@ -1,0 +1,25 @@
+<div class="text-light register-content">
+    <div class="text-light infos-group">
+        <div class="form-group text-center">
+            <div class="list-content">
+                <h1>Fornecedore disponiveis</h1>
+                <table class="text-center table table-sm table-dark table-striped table-hover table-bordered">
+                  <tr>
+                    <th>Nome</th>
+                    <th class="text-center">Opções</th>
+                  </tr>
+                  <tr *ngFor="let supplier of suppliers">
+                    <td>{{ supplier.name }}</td>
+              
+                    <td class="functions">
+                      <input type="submit" class="btn btn-sm btn-dark" value="Contratar" (click)="toHire(supplier)">
+                    </td>
+                  </tr>
+                </table>
+            </div>
+            <a class="btn btn-outline-danger" [routerLink]="'/companies/' + companyId + '/suppliers'">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span></span> Voltar
+            </a>
+        </div>
+    </div>
+</div>

@@ -2,31 +2,24 @@
 
 ## Entidades bases
 
-### Empresa
+#### Empresa
 - CNPJ
 - Nome Fantasia
 - CEP
 
-### Fornecedor
+#### Fornecedor
 - CNPJ ou CPF
 - Nome
 - E-mail
 - CEP
 
 ## Tecnologias utilizadas
-- Java Spring
+- Java 17 com Springboot
 - Angular
 - PostgreSQL
 
 ## Instruções de instalação e uso
 - Clonar o repositório
-
-##### Front-End
-- Rodar o comando `npm install` para instalar as dependências do back-end
-- Rodar o comando `npm run dev` para iniciar o servidor do back-end
-- Entrar na pasta `frontend` e rodar o comando `npm install` para instalar as dependências do front-end
-- Rodar o comando `npm start` para iniciar o servidor do front-end
-- Acessar a aplicação em `http://localhost:4200/` no navegador.
 
 ##### Back-End
 - Baixar e configurar banco de dados postgresql.
@@ -47,5 +40,12 @@
 > `spring.jpa.show-sql=true`<br>
 > `spring.jpa.properties.hibernate.format_sql=true`<br>
 
+- Não foi feito o deploy dos arquivos de configuração de ambiente por se tratar de uma boa pratica para a segurança dos dados da aplicação, o que caso seja feito o deploy corre o risco de vazar dando informações sobre endereço de ip, login e senha do banco e aplicação.
+
+##### Front-End
+- Entrar na pasta `application-front` e rodar o comando `npm install` para instalar as dependências do front-end
+- Rodar o comando `npm serve` para iniciar o servidor do front-end
+- Acessar a aplicação em `http://localhost:4200/` no navegador.
+
 ## Autores
-Este projeto foi desenvolvido por [Nome do desenvolvedor].
+Este projeto foi desenvolvido por Josué Felipe.
